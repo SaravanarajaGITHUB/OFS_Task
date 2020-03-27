@@ -59,7 +59,7 @@ class PhotoDetailScreen extends StatelessWidget with WidgetHelper {
       width: 180.0,
       height: 180.0,
       imageUrl: url,
-      fit: BoxFit.cover,
+      fit: BoxFit.none,
     );
   }
 

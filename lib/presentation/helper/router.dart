@@ -13,7 +13,7 @@ class Router {
       case SearchPhotoScreen.ROUTE_NAME:
         return _buildPageRoute(SearchPhotoScreen(), settings);
       case PhotoResultScreen.ROUTE_NAME:
-        return _buildPageRoute(PhotoResultScreen(), settings);
+        return _buildPageRoute(PhotoResultScreen(keyword: settings.arguments), settings);
       case PhotoDetailScreen.ROUTE_NAME:
         return _buildPageRoute(PhotoDetailScreen(photoId:settings.arguments), settings);
       default:
