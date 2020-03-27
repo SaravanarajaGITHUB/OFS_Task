@@ -71,6 +71,7 @@ class SearchPhotoScreen extends StatelessWidget with WidgetHelper {
 
   void _onClickSearchButtonClick(
       BuildContext context, SearchPhotoViewModel viewModel) async {
+    FocusScope.of(context).unfocus();
     if (this._searchTextEditController.text.isNotEmpty) {
       await viewModel.getSearchPhotoStatus(this._searchTextEditController.text);
       showError(context, viewModel.searchStatus);
@@ -80,7 +81,10 @@ class SearchPhotoScreen extends StatelessWidget with WidgetHelper {
             arguments: this._searchTextEditController.text);
       }
     } else {
-      // TODO: show error
+      final snackBar =
+          SnackBar(content: Text(PresentationConstants.ALERT_MESSAGE_KEYWORD));
+      this._scaffoldKey.currentState.hideCurrentSnackBar();
+      this._scaffoldKey.currentState.showSnackBar(snackBar);
     }
   }
 }
