@@ -8,8 +8,10 @@ import 'package:ofs_task/locator.dart';
 void main() {
   setUpRealLocator();
 
+  String photoId;
+
   group('App Flow', () {
-    test('Search Photo Staus SHOULD success THEN RETURN true', () async {
+    test('Search Photo Staus SHOULD pass THEN RETURN true', () async {
       SearchPhotoStatusUseCase searchPhotoStatusUseCase =
           locator<SearchPhotoStatusUseCase>();
       final response = await searchPhotoStatusUseCase.searchPhotoStatus('cats');
@@ -17,20 +19,20 @@ void main() {
       expect(response.data, true);
     });
 
-    test('Get Photos SHOULD success THEN RETURN list of photos object', () async {
+    test('Get Photos SHOULD pass THEN RETURN list of photos', () async {
       GetPhotosUseCase getPhotosUseCase = locator<GetPhotosUseCase>();
       final response = await getPhotosUseCase.getPhotos();
       expect(response.status, Status.SUCCESS);
       expect(response.data.length > 0, true);
+      photoId = response.data[0].id;
     });
 
-    test('Get Photo by id SHOULD success THEN RETURN not null photo object', () async {
+    test('Get Photo by id SHOULD pass THEN RETURN photo', () async {
       GetPhotoUseCase getPhotoUseCase = locator<GetPhotoUseCase>();
-      final response = await getPhotoUseCase.getPhoto('49704648892');
+      final response = await getPhotoUseCase.getPhoto(photoId);
       expect(response.status, Status.SUCCESS);
       expect(response.data != null, true);
     });
   });
 
-  //
 }
